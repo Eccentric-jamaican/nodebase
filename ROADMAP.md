@@ -18,9 +18,9 @@
 # 03 tRPC Setup
 - Setup tRPC V11
 - Create a procedure with Prisma API
-- Eplore tRPC client-side
+- Explore tRPC client-side
 - Explore tRPC server-side
-- Explore tRPC client + server (prefetching )
+- Explore tRPC client + server (prefetching)
 
 - Push to Github
  -Create a new branch
