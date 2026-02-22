@@ -27,3 +27,14 @@
  -Create a new PR
  -Review and merge
 
+# 04 Authentication
+- Setup BetterAuth
+- Add Auth screens
+- Add auth utils
+-Add auth procedures (tRPC)
+
+- Push to Github
+ -Create a new branch
+ -Create a new PR
+ -Review and merge
+
