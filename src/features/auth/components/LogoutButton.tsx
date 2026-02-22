@@ -19,12 +19,7 @@ export function LogoutButton() {
   };
 
   return (
-    <Button
-      onClick={handleSignOut}
-      variant="outline"
-      className="border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-700 bg-transparent text-xs tracking-widest uppercase"
-      style={{ fontFamily: "var(--font-geist-mono)" }}
-    >
+    <Button onClick={handleSignOut} variant="outline" size="sm">
       Sign out
     </Button>
   );

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
@@ -55,31 +56,67 @@ export function RegisterForm() {
     router.refresh();
   };
 
+  const handleSocialLogin = async (provider: "github" | "google") => {
+    await authClient.signIn.social({
+      provider,
+      callbackURL: "/",
+    });
+  };
+
   return (
     <div>
       {/* Heading */}
-      <div className="mb-7">
-        <h1
-          className="text-xl font-semibold text-zinc-100 mb-1"
-          style={{ fontFamily: "var(--font-geist-sans)" }}
-        >
+      <div className="mb-4">
+        <h1 className="text-xl font-semibold text-foreground mb-1">
           Create account
         </h1>
-        <p
-          className="text-[13px] text-zinc-500"
-          style={{ fontFamily: "var(--font-geist-mono)" }}
-        >
+        <p className="text-sm text-muted-foreground font-mono">
           Start building your workflows
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+      {/* Social buttons */}
+      <div className="grid grid-cols-2 gap-3 mb-6">
+        <Button
+          type="button"
+          variant="outline"
+          className="h-10"
+          onClick={() => handleSocialLogin("github")}
+          disabled={isLoading}
+        >
+          <Image src="/logos/github.svg" alt="GitHub" width={18} height={18} />
+          GitHub
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          className="h-10"
+          onClick={() => handleSocialLogin("google")}
+          disabled={isLoading}
+        >
+          <Image src="/logos/google.svg" alt="Google" width={18} height={18} />
+          Google
+        </Button>
+      </div>
+
+      {/* Divider */}
+      <div className="relative mb-6">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-border" />
+        </div>
+        <div className="relative flex justify-center">
+          <span className="bg-background px-3 text-xs text-muted-foreground uppercase tracking-wider font-mono">
+            or
+          </span>
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-3">
         {/* Email */}
         <div className="space-y-1.5">
           <label
             htmlFor="email"
-            className="block text-[10px] font-medium tracking-[0.15em] uppercase text-zinc-500"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
+            className="block text-xs font-medium text-muted-foreground uppercase tracking-wider font-mono"
           >
             Email
           </label>
@@ -91,13 +128,10 @@ export function RegisterForm() {
             disabled={isLoading}
             aria-invalid={!!errors.email}
             {...register("email")}
-            className="bg-zinc-900/60 border-zinc-800 text-zinc-100 placeholder:text-zinc-700 focus-visible:border-amber-500/50 focus-visible:ring-amber-500/15 h-10"
+            className="h-10"
           />
           {errors.email && (
-            <p
-              className="text-[11px] text-red-400"
-              style={{ fontFamily: "var(--font-geist-mono)" }}
-            >
+            <p className="text-[11px] text-destructive font-mono">
               {errors.email.message}
             </p>
           )}
@@ -107,8 +141,7 @@ export function RegisterForm() {
         <div className="space-y-1.5">
           <label
             htmlFor="password"
-            className="block text-[10px] font-medium tracking-[0.15em] uppercase text-zinc-500"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
+            className="block text-xs font-medium text-muted-foreground uppercase tracking-wider font-mono"
           >
             Password
           </label>
@@ -120,13 +153,10 @@ export function RegisterForm() {
             disabled={isLoading}
             aria-invalid={!!errors.password}
             {...register("password")}
-            className="bg-zinc-900/60 border-zinc-800 text-zinc-100 placeholder:text-zinc-700 focus-visible:border-amber-500/50 focus-visible:ring-amber-500/15 h-10"
+            className="h-10"
           />
           {errors.password && (
-            <p
-              className="text-[11px] text-red-400"
-              style={{ fontFamily: "var(--font-geist-mono)" }}
-            >
+            <p className="text-[11px] text-destructive font-mono">
               {errors.password.message}
             </p>
           )}
@@ -136,8 +166,7 @@ export function RegisterForm() {
         <div className="space-y-1.5">
           <label
             htmlFor="confirmPassword"
-            className="block text-[10px] font-medium tracking-[0.15em] uppercase text-zinc-500"
-            style={{ fontFamily: "var(--font-geist-mono)" }}
+            className="block text-xs font-medium text-muted-foreground uppercase tracking-wider font-mono"
           >
             Confirm password
           </label>
@@ -149,13 +178,10 @@ export function RegisterForm() {
             disabled={isLoading}
             aria-invalid={!!errors.confirmPassword}
             {...register("confirmPassword")}
-            className="bg-zinc-900/60 border-zinc-800 text-zinc-100 placeholder:text-zinc-700 focus-visible:border-amber-500/50 focus-visible:ring-amber-500/15 h-10"
+            className="h-10"
           />
           {errors.confirmPassword && (
-            <p
-              className="text-[11px] text-red-400"
-              style={{ fontFamily: "var(--font-geist-mono)" }}
-            >
+            <p className="text-[11px] text-destructive font-mono">
               {errors.confirmPassword.message}
             </p>
           )}
@@ -165,22 +191,18 @@ export function RegisterForm() {
         <Button
           type="submit"
           disabled={isLoading}
-          className="w-full h-10 mt-2 bg-amber-500 hover:bg-amber-400 text-black font-semibold text-sm tracking-wide transition-colors duration-150 rounded-none"
-          style={{ fontFamily: "var(--font-geist-mono)" }}
+          className="w-full h-10 mt-2 font-semibold text-sm"
         >
-          {isLoading ? "Creating account…" : "Create account →"}
+          {isLoading ? "Creating account…" : "Create account"}
         </Button>
       </form>
 
       {/* Footer link */}
-      <p
-        className="mt-6 text-center text-[12px] text-zinc-600"
-        style={{ fontFamily: "var(--font-geist-mono)" }}
-      >
+      <p className="mt-4 text-center text-xs text-muted-foreground font-mono">
         Already have an account?{" "}
         <Link
           href="/login"
-          className="text-amber-500/80 hover:text-amber-400 transition-colors"
+          className="text-primary hover:text-primary/80 transition-colors"
         >
           Sign in
         </Link>

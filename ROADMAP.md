@@ -38,3 +38,13 @@
  -Create a new PR
  -Review and merge
 
+# 05 theme & styling
+- Apply new theme
+- Improve auth screens
+- Add logos
+
+- Push to Github
+ -Create a new branch
+ -Create a new PR
+ -Review and merge
+
