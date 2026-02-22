@@ -14,3 +14,16 @@
  -Create a new branch
  -Create a new PR
  -Review and merge
+
+# 03 tRPC Setup
+- Setup tRPC V11
+- Create a procedure with Prisma API
+- Eplore tRPC client-side
+- Explore tRPC server-side
+- Explore tRPC client + server (prefetching )
+
+- Push to Github
+ -Create a new branch
+ -Create a new PR
+ -Review and merge
+
