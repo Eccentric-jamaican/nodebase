@@ -49,6 +49,7 @@
  -Review and merge
 
 # 06 Background jobs
+
 - Setup Inngest
 - Create a background job
 - A mprocs(optional)
@@ -57,4 +58,15 @@
  -Create a new branch
  -Create a new PR
  -Review and merge
+
+# 07 AI Providers
+- Choose your AI models(s) (OpenAI, Anthropic, Google, etc.)
+- Setup AI SDK
+- Use AI SDK with Inngest
+
+- Push to Github
+ -Create a new branch
+ -Create a new PR
+ -Review and merge
+
 
