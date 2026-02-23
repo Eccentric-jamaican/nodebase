@@ -48,3 +48,13 @@
  -Create a new PR
  -Review and merge
 
+# 06 Background jobs
+- Setup Inngest
+- Create a background job
+- A mprocs(optional)
+
+- Push to Github
+ -Create a new branch
+ -Create a new PR
+ -Review and merge
+
